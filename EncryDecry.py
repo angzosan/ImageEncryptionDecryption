@@ -8,7 +8,7 @@ from PIL import ImageFont
 #path = input("Enter the path of the image for encryption : ")
 key = input( "Enter they key for the encryption : ")
 key = int(key) 
-path = 'image.png'
+path = 'image.jpg'
 
 with open(path, "rb") as image:
   f = image.read()
