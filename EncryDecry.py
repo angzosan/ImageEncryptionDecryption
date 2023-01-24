@@ -4,6 +4,12 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+def encr_decry(Cipher,key):
+  arr = [ 0 for i in range(0, len(Cipher))]
+  for i in range(0, len(Cipher)):
+      arr[i] = Cipher[i]^key
+  return arr
+
 
 #path = input("Enter the path of the image for encryption : ")
 key = input( "Enter they key for the encryption : ")
@@ -14,27 +20,13 @@ with open(path, "rb") as image:
   f = image.read()
   imagByt = bytearray(f)
 
-#print(imagByt)
-encryImage = [ 0 for i in range(0, len(imagByt))]
-for i in range(0, len(imagByt)):
-    encryImage[i] = imagByt[i]^key
-
-#print(encryImage)
+encryImage = encr_decry(imagByt,key)
 encryImage = bytearray(encryImage)
-#imag = Image.frombuffer('L', , encryImage, 'raw', 'L', 0, 1)
-#img.show()
-#encryImage = bytearray(encryImage)
-
-
 print('The image has been encrypted.')
-print(encryImage)
+#print(encryImage)
 
+print("Decryption process begins... ")
 
-print("Decryption process begins : ")
-decryImage = [ 0 for i in range(0, len(encryImage))]
-for i in range(0, len(imagByt)):
-    decryImage[i] = encryImage[i]^key
-
-
+decryImage = encr_decry(encryImage,key)
 print('The image has been decrypted.')
-print(decryImage)
+#print(decryImage)
